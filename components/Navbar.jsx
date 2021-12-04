@@ -19,7 +19,7 @@ const Navbar = () => {
 
                 <div className="level-right ">
                     <Link href="/">
-                        <a className="button is-danger is-small">Login</a>
+                        <a className="button is-danger is-small is-static">Login</a>
                     </Link>
                 </div>
             </nav>

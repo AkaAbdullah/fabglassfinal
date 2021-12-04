@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Cards from '../components/cards'
+import Cards from '../components/Cards'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
