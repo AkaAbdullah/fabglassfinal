@@ -34,12 +34,12 @@ export const getStaticProps = async () => {
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
-const customcutprintreport = ({ reports, count, result, len }) => {
-    const [searchOrder, setSearchOrder] = useState('');
+const Customcutprintreport = ({ reports, count, result, len }) => {
+    const [searchOrder, SetSearchOrder] = useState('');
 
-    const [doubleshow, setDoubleShow] = useState(false);
-    const handleDoublePrint = () => {
-        setDoubleShow(!doubleshow);
+    const [doubleshow, SetDoubleShow] = useState(false);
+    const HandleDoublePrint = () => {
+        SetDoubleShow(!doubleshow);
     }
     return (
         <>
@@ -56,7 +56,7 @@ const customcutprintreport = ({ reports, count, result, len }) => {
                     <div className="column is-4">
                         <div className="box has-background-dark">
                             <p className="subtitle has-text-centered has-text-white">Search Order No</p>
-                            <input className="input" type="search" onChange={event => { setSearchOrder(event.target.value) }} placeholder="Search...."></input>
+                            <input className="input" type="search" onChange={event => { SetSearchOrder(event.target.value) }} placeholder="Search...."></input>
                         </div>
                     </div>
                     <div className="column is-4">
@@ -69,7 +69,7 @@ const customcutprintreport = ({ reports, count, result, len }) => {
                         <div className="box has-background-dark">
                             <p className="subtitle has-text-centered has-text-white">Double Printed Orders</p>
                             <p className="subtitle has-text-centered has-text-white">{len}</p>
-                            <a className="has-text-centered button is-small is-rounded is-success is-fullwidth" onClick={handleDoublePrint}> View Details</a>
+                            <a className="has-text-centered button is-small is-rounded is-success is-fullwidth" onClick={HandleDoublePrint}> View Details</a>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@ const customcutprintreport = ({ reports, count, result, len }) => {
                                         }
                                     }).map(report => {
                                         return (
-                                            <tbody className="has-text-centered">
+                                            <tbody key={report._id} className="has-text-centered">
                                                 <tr key={report._id} style={{ border: '1px solid #e5e5e5' }}>
                                                     <td>{report._id}</td>
                                                     <td>{report.DocumentName}</td>
@@ -130,7 +130,7 @@ const customcutprintreport = ({ reports, count, result, len }) => {
                                 {
                                     result.map(function (item, i) {
 
-                                        return (<tbody className="has-text-centered">
+                                        return (<tbody key={result.id} className="has-text-centered">
                                             <tr key={result.id} style={{ border: '1px solid #e5e5e5' }}>
                                                 <td>{item}</td>
                                             </tr>
@@ -145,4 +145,4 @@ const customcutprintreport = ({ reports, count, result, len }) => {
     )
 }
 
-export default customcutprintreport
+export default Customcutprintreport
