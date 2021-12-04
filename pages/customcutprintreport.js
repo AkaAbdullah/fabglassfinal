@@ -1,6 +1,6 @@
 
 export const getStaticProps = async () => {
-    const res = await fetch('https://fabglass.vercel.app/api/customcutprintingreport');
+    const res = await fetch('https://nextfabglass.vercel.app/api/orders');
     const { data } = await res.json();
     const count = Object.keys(data).length;
     console.log(count);
