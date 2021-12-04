@@ -1,0 +1,15 @@
+.bg {
+    background-color: #100e17;
+    font-family: 'Open Sans', sans-serif;
+    min-height: 100vh;
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+.tablewrapper {
+    overflow-x: auto; 
+    overflow-y: hidden;
+}
