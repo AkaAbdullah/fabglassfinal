@@ -2,6 +2,7 @@
 export const getStaticProps = async () => {
     const res = await fetch('https://nextfabglass.vercel.app/api/orders');
     const { data } = await res.json();
+    console.log(data);
     const count = Object.keys(data).length;
     console.log(count);
     const repeated = data.reduce((acc, cur) => {
@@ -27,19 +28,34 @@ export const getStaticProps = async () => {
 
     return {
         props: { reports: data, count: count, result: result, len: len },
-        revalidate: 18000,
+        revalidate: 300,
 
     }
 }
+
+
+
+
+
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
+
 const Customcutprintreport = ({ reports, count, result, len }) => {
     const [searchOrder, SetSearchOrder] = useState('');
+    const [date, SetDate] = useState('');
+
+    const myArray = date.split("-");
+    const year = myArray[0];
+    const month = myArray[1];
+    const day = myArray[2];
+    const finalDate = day + '/' + month + '/' + year;
+    console.log(finalDate);
 
     const [doubleshow, SetDoubleShow] = useState(false);
     const HandleDoublePrint = () => {
         SetDoubleShow(!doubleshow);
+
     }
     return (
         <>
@@ -53,22 +69,28 @@ const Customcutprintreport = ({ reports, count, result, len }) => {
             <div className="container">
 
                 <div className="columns is-vcentered">
-                    <div className="column is-4">
+                    <div className="column is-3">
                         <div className="box has-background-dark">
                             <p className="subtitle has-text-centered has-text-white">Search Order No</p>
-                            <input className="input" type="search" onChange={event => { SetSearchOrder(event.target.value) }} placeholder="Search...."></input>
+                            <input className="input is-small mb-3" type="search" onChange={event => { SetSearchOrder(event.target.value) }} placeholder="Search...."></input>
                         </div>
                     </div>
-                    <div className="column is-4">
+                    <div className="column is-3">
                         <div className="box has-background-dark">
+                            <p className="subtitle has-text-centered has-text-white">Select Date</p>
+                            <input className="input" onChange={event => { SetDate(event.target.value) }} type="date"></input>
+                        </div>
+                    </div>
+                    <div className="column is-3">
+                        <div className="box has-background-warning-dark	">
                             <p className="subtitle has-text-centered has-text-white">Total printed Orders</p>
-                            <p className="subtitle has-text-centered has-text-white"> <strong className="has-text-white"> {count}</strong></p>
+                            <p className="subtitle has-text-centered has-text-white mb-4"> <strong className="has-text-white"> {count}</strong></p>
                         </div>
                     </div>
-                    <div className="column is-4">
+                    <div className="column is-3">
                         <div className="box has-background-dark">
-                            <p className="subtitle has-text-centered has-text-white">Double Printed Orders</p>
-                            <p className="subtitle has-text-centered has-text-white">{len}</p>
+                            <p className="subtitle has-text-centered has-text-white m-1">Double Printed Orders</p>
+                            <p className="subtitle has-text-centered has-text-white m-1">{len}</p>
                             <a className="has-text-centered button is-small is-rounded is-success is-fullwidth" onClick={HandleDoublePrint}> View Details</a>
                         </div>
                     </div>
@@ -87,8 +109,8 @@ const Customcutprintreport = ({ reports, count, result, len }) => {
                                             <th className="has-text-black">Printer</th>
                                             <th className="has-text-black">Copies</th>
                                             <th className="has-text-black">Size</th>
-                                            <th className="has-text-black">Height</th>
-                                            <th className="has-text-black">Width</th>
+                                            <th className="has-text-black">Page Height</th>
+                                            <th className="has-text-black">Page Width</th>
                                             <th className="has-text-black">Duplex</th>
                                         </tr>
                                     </thead>
@@ -120,7 +142,7 @@ const Customcutprintreport = ({ reports, count, result, len }) => {
                             </div>
 
                         </div> :
-                        <div className="columns is-centered" >
+                        <div className=" mb-6 columns is-centered" >
                             <table className="table has-text-centered">
                                 <thead className="has-text-centered">
                                     <tr className="has-text-centered is-selected">
