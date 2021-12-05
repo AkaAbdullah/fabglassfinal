@@ -72,7 +72,7 @@ const Customcutprintreport = ({ reports, count, result, len }) => {
             <div className="columns">
                 <div className="column">
                     <div className=" has-background-dark">
-                        <h1 className="title has-text-centered has-text-white">Custom Cut Printing Report</h1>
+                        <h1 className="title has-text-centered has-text-white">Custom-Cut Printing Report</h1>
                     </div>
                 </div>
             </div>
