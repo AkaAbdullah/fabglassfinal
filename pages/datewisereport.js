@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
 
 const DynamicComponentWithNoSSR = dynamic(
     () => import('../components/datewise.jsx'),
@@ -8,9 +9,12 @@ const DynamicComponentWithNoSSR = dynamic(
 
 const DatewisePage = () => {
     return (
-        <div>
+        <>
+            <Head>
+                <title>Datewise Printing Report</title>
+            </Head>
             <DynamicComponentWithNoSSR />
-        </div>
+        </>
     )
 }
 

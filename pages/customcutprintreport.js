@@ -31,7 +31,7 @@ export const getStaticProps = async () => {
 }
 
 import { useState } from 'react';
-import router, { useRouter } from 'next/router';
+import router from 'next/router';
 import styles from '../styles/Home.module.css';
 import Head from 'next/head'
 
@@ -158,7 +158,7 @@ const Customcutprintreport = ({ reports, count, result, len }) => {
                                         } else if (val.DocumentName.toLowerCase().includes(searchOrder.toLowerCase())) {
                                             return val;
                                         }
-                                    }).map(report => {
+                                    }).slice(0, 200).map(report => {
                                         return (
                                             <tbody key={report._id} className="has-text-centered">
                                                 <tr key={report._id} style={{ border: '1px solid #e5e5e5' }}>

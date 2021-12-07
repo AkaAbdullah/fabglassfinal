@@ -29,7 +29,7 @@ const Datewisecomponent = () => {
         <>
             <div className="mb-6">
                 <p className="title has-text-centered has-background-dark has-text-white">
-                    Date Wise Report {date}
+                    Datewise Report {date}
                 </p>
             </div>
             <div className="container">

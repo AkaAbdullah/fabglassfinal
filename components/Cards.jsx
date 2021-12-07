@@ -24,7 +24,7 @@ const Cards = () => {
                             <p className=" is-size-3 has-text-white"> <span className="is-size-1 has-text-white">P</span>rinting</p>
                             <p className=" is-size-3 mb-6 has-text-white"> <span className="is-size-1 has-text-white">R</span>eport</p>
                             <Link href="/readymadeprintreport">
-                                <a className="button is-outlined is-dark has-text-white is-fullwidth">View Status</a>
+                                <a className="button is-outlined is-dark has-text-white is-static is-fullwidth">View Status</a>
                             </Link>
                         </div>
                     </div>
