@@ -2,8 +2,8 @@
 export const getStaticProps = async () => {
     const res = await fetch('https://nextfabglass.vercel.app/api/orders');
     const { data } = await res.json();
+    console.log(typeof data);
     const count = Object.keys(data).length;
-    console.log(count);
     const repeated = data.reduce((acc, cur) => {
         const name = cur.DocumentName;
         if (acc[name]) {
@@ -20,7 +20,6 @@ export const getStaticProps = async () => {
             result.push(key + ': ' + repeated[key]);
         }
     }
-    console.log(result);
     var len = result.length;
     console.log(len);
 
@@ -31,44 +30,73 @@ export const getStaticProps = async () => {
     }
 }
 
-
-
-
-
 import { useState } from 'react';
 import router, { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
-
-//Getting date wise data from database
-
+import Head from 'next/head'
 
 const Customcutprintreport = ({ reports, count, result, len }) => {
+
     const [searchOrder, SetSearchOrder] = useState('');
     const [date, SetDate] = useState('');
 
+    //const [datewisereport, setDateWiseReport] = useState([]);
+
+    //Getting Date and Arrangeing
     const myArray = date.split("-");
     const year = myArray[0];
     const month = myArray[1];
     const day = myArray[2];
     const finalDate = day + '/' + month + '/' + year;
-    console.log(finalDate);
     if (typeof window !== "undefined") {
-
-        localStorage.setItem(date, finalDate);
-
+        localStorage.setItem('date', finalDate);
     }
+    //getting report datewise
     function getDatewiseData() {
+        const setDateWiseReport = reports.filter(x => x.Time === finalDate);
+        if (typeof window !== "undefined") {
+            localStorage.setItem('allRec', JSON.stringify(setDateWiseReport));
+        }
+        const count = Object.keys(setDateWiseReport).length;
+        if (typeof window !== "undefined") {
+            localStorage.setItem('count', count);
+        }
+        console.log(count);
+        const repeated = setDateWiseReport.reduce((acc, cur) => {
+            const name = cur.DocumentName;
+            if (acc[name]) {
+                acc[name]++;
+            } else {
+                acc[name] = 1;
+            }
+            return acc;
+        }, {})
+        var result = []
+        for (var key in repeated) {
+            if (repeated[key] >= 2) {
+                result.push(key + ': ' + repeated[key]);
+            }
+        }
+        if (typeof window !== "undefined") {
+            localStorage.setItem('repeated', JSON.stringify(result));
+        }
+        console.log(result);
+        var len = result.length;
+        if (typeof window !== "undefined") {
+            localStorage.setItem('len', len);
+        }
         router.push('/datewisereport');
     }
-
 
     const [doubleshow, SetDoubleShow] = useState(false);
     const HandleDoublePrint = () => {
         SetDoubleShow(!doubleshow);
-
     }
     return (
         <>
+            <Head>
+                <title>Custom Cut Printing Report</title>
+            </Head>
             <div className="columns">
                 <div className="column">
                     <div className=" has-background-dark">
@@ -77,7 +105,6 @@ const Customcutprintreport = ({ reports, count, result, len }) => {
                 </div>
             </div>
             <div className="container">
-
                 <div className="columns is-vcentered">
                     <div className="column is-3">
                         <div className="box has-background-dark">
