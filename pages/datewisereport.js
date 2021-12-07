@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
-const datewisereport = () => {
+const Datewisereport = () => {
     const [searchOrder, SetSearchOrder] = useState('');
 
     var reports;
@@ -127,4 +127,4 @@ const datewisereport = () => {
     )
 }
 
-export default datewisereport
+export default Datewisereport
