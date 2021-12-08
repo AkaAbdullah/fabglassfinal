@@ -5,7 +5,7 @@ import logo from '../public/logo.png'
 const Navbar = () => {
     return (
         <div>
-            <nav className="level has-background-danger is-flex-mobile 	">
+            <nav className="level has-background-black-bis is-flex-mobile 	">
                 <div className="level-left">
                     <div className="level-item">
                         <Link href="/">

@@ -1,5 +1,6 @@
 .bg {
-    background-color: #100e17;
+    background:linear-gradient(-45deg, #742913, #E73C7E, #23A6D5, #151616);
+    background-size: 400% 400%;
     font-family: 'Open Sans', sans-serif;
     min-height: 100vh;
     flex: 1;
@@ -7,8 +8,19 @@
     justify-content: center;
     align-items: center;
     display: flex;
+    animation: change 10s ease-in-out infinite;
   }
-  
+@keyframes change{
+  0%{
+    background-position: 0 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0 50%;
+  }
+}
 .tablewrapper {
     overflow-x: auto; 
     overflow-y: hidden;
